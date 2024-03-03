@@ -22,4 +22,13 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Heart"))
+        {
+            GameManager.instance.AddLife(1);
+            Destroy(other.gameObject);
+        }
+    }
 }

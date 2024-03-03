@@ -19,6 +19,7 @@ public class MoveDown : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        GameManager.instance.AddLife(-1);
         Destroy(gameObject);
     }
 }

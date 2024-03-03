@@ -6,13 +6,18 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject _barPrefab;
     [SerializeField] private GameObject[] _spawnPoints;
+    [SerializeField] private GameObject _heartPrefab;
 
-    private float spawnDelay = 1.5f;
-    private float spawnInterval = 2f;
+    private float barsSpawnDelay = 1.5f;
+    private float barsSpawnInterval = 2f;
+    private float xRange = 12f;
+    private float lifeSpawnDelay = 5f;
+    private float lifeSpawnInterval = 7f;
 
     private void Start()
     {
-        InvokeRepeating("SpawnBars", spawnDelay, spawnInterval);
+        InvokeRepeating("SpawnBars", barsSpawnDelay, barsSpawnInterval);
+        InvokeRepeating("SpawnLife", lifeSpawnDelay, lifeSpawnInterval);
     }
 
     private void SpawnBars()
@@ -30,5 +35,10 @@ public class SpawnManager : MonoBehaviour
             Instantiate(_barPrefab, _spawnPoints[randomIndex].transform.position, Quaternion.identity);
         }
         usedIndices.Clear();
+    }
+
+    private void SpawnLife()
+    {
+        Instantiate(_heartPrefab, new Vector3(Random.Range(-xRange, xRange), -8.5f, 0f), Quaternion.identity);
     }
 }
