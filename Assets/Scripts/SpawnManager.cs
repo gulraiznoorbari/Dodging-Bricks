@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject _heartPrefab;
 
     private float barsSpawnDelay = 1.5f;
-    private float barsSpawnInterval = 2f;
+    private float barsSpawnInterval = 2.3f;
     private float xRange = 12f;
     private float lifeSpawnDelay = 5f;
     private float lifeSpawnInterval = 7f;
@@ -39,6 +39,6 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnLife()
     {
-        Instantiate(_heartPrefab, new Vector3(Random.Range(-xRange, xRange), -8.5f, 0f), Quaternion.identity);
+        Instantiate(_heartPrefab, new Vector3(Random.Range(-xRange, xRange), -8.5f, 0f), _heartPrefab.transform.rotation);
     }
 }

@@ -17,9 +17,19 @@ public class MoveDown : MonoBehaviour
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         GameManager.instance.AddLife(-1);
-        Destroy(gameObject);
+        Rigidbody barRb = gameObject.GetComponent<Rigidbody>();
+        if (barRb != null)
+        {
+            barRb.AddForce(Vector3.up * 40, ForceMode.Impulse);
+            Time.timeScale = 0.2f;
+            Destroy(gameObject, 1f);
+            if (GameManager.instance.GetLives() == 0)
+            {
+                Time.timeScale = 1f;
+            }
+        }
     }
 }

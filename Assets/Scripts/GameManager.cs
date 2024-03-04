@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        life = 3;
         _livesText.text = life.ToString();
     }
 
@@ -35,7 +36,6 @@ public class GameManager : MonoBehaviour
         if (life < 1)
         {
             GameOverMenu();
-            Time.timeScale = 0f;
         }
         else
         {
@@ -44,8 +44,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int GetLives()
+    {
+        return life;
+    }
+
     private void GameOverMenu()
     {
+        Time.timeScale = 0f;
         _gameOverMenu.SetActive(true);
     }
 
